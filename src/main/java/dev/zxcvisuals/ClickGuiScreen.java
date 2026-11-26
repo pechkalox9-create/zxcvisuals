@@ -2,6 +2,7 @@ package dev.zxcvisuals;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.network.chat.Component;
 
 public final class ClickGuiScreen extends Screen {
@@ -42,15 +43,17 @@ public final class ClickGuiScreen extends Screen {
     }
 
     @Override
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+    public boolean mouseClicked(MouseButtonEvent event, boolean doubleClick) {
         int left = (this.width - WIDTH) / 2;
         int top = (this.height - HEIGHT) / 2;
-        if (button == 0 && mouseX >= left + 94 && mouseX <= left + WIDTH - 14
+        double mouseX = event.x();
+        double mouseY = event.y();
+        if (event.button() == 0 && mouseX >= left + 94 && mouseX <= left + WIDTH - 14
                 && mouseY >= top + 70 && mouseY <= top + 104) {
             ZxcVisuals.toggleHud();
             return true;
         }
-        return super.mouseClicked(mouseX, mouseY, button);
+        return super.mouseClicked(event, doubleClick);
     }
 
     @Override public boolean isPauseScreen() { return false; }
