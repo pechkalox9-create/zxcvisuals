@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "zxcvisuals",
+  "version": "${version}",
+  "name": "zxcvisuals",
+  "description": "A lightweight client-side visuals and HUD mod for Minecraft 1.21.11.",
+  "authors": ["pechkalox9-create"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": { "client": ["dev.zxcvisuals.ZxcVisuals"] },
+  "depends": {
+    "fabricloader": ">=0.18.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
