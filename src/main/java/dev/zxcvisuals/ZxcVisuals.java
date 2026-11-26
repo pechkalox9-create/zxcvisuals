@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements;
 import net.minecraft.client.DeltaTracker;
+import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
@@ -16,12 +17,14 @@ public final class ZxcVisuals implements ClientModInitializer {
     public static final String MOD_ID = "zxcvisuals";
     private static KeyMapping openGuiKey;
     private static boolean hudEnabled = true;
+    private static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(
+            Identifier.fromNamespaceAndPath(MOD_ID, "main"));
 
     @Override
     public void onInitializeClient() {
         openGuiKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
-                "key.zxcvisuals.open_gui", GLFW.GLFW_KEY_RIGHT_SHIFT,
-                KeyMapping.Category.MISC));
+                "key.zxcvisuals.open_gui", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_RIGHT_SHIFT,
+                CATEGORY));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (openGuiKey.consumeClick()) {
